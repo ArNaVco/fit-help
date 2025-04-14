@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style>
+            body{
+                color:#ffffff;
+            }
+        </style>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css">
+        <title>Gym Excersis website</title>
+        <style>
+           *  {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+            body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+                position: fixed;
+                top: 20px;
+                left: 20px;
+            }
+            .logo {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                object-fit: cover;
+                border: 2px solid #d80808;
+            }
+        .nav-bar {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(150, 13, 184, 0.8);
+            padding: 10px 20px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        nav ul {
+            display: flex;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-bar li {
+            margin: 0 10px;
+        }
+        .nav-bar a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .nav-bar a:hover, .nav-bar a.active {
+            background-color: #0b0f41;
+            color: rgb(20, 133, 133);
+        }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            .nav-bar {
+                flex-direction: column;
+                align-items: flex-end;
+                padding: 10px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-bar ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                margin-top: 10px;
+            }
+
+            .nav-bar ul.show {
+                display: flex;
+            }
+
+            .nav-bar li {
+                margin: 10px 0;
+            }
+        }
+        .active {
+            background-color: #0b0f41;
+            color: rgb(20, 133, 133);
+        }
+        .active:hover {
+            background-color: #1f94b4;
+        }
+        .top-left-heading {
+            position: absolute;
+            top: 200px;
+            left: 440px;
+        }
+        .top-left-headings {
+            position: absolute;
+            top: 270px;
+            left: 610px;
+        }
+            h2 {
+                color: #960db8;
+                font-size: 2.5em;
+            }
+            .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(150, 13, 184, 0.8)), url('/api/placeholder/1920/1080');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Portfolio Section */
+        .exercise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .exercise-item {
+            background: #030405;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .exercise-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .exercise-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .exercise-item-content {
+            padding: 1.5rem;
+        }
+
+        /* Blog Section */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-post {
+            background: #f8f9fa;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .blog-post img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        /* Contact Section */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+        }
+
+        /* Footer */
+        footer {
+            background: #000e1c;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .social-links {
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            margin: 0 0.5rem;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #3498db;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+        }
+        </style>
+</head>
+<body style="background-color:rgb(0, 0, 0);">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="top-left-heading">Start your journey towards the</h1>
+            <h2 class="top-left-headings">Dream Physique</h2>
+            <p>     </p>
+            
+            
+        </div>
+    </div>
+    <header> 
+        <img src="./image/logo.png" alt="Logo" class="logo"> 
+    </header> 
+    <nav class="nav-bar">
+        <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#exercise">Exercise</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+    </nav>
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="top-left-heading">Start your journey towards the</h1>
+            <h2 class="top-left-headings">Dream Physique</h2>
+            <p>     </p>
+            <p>It's Now or never</p>
+            <a href="#exercise" class="btn">Show Path</a>
+        </div>
+    </section>
+    <section id="about">
+        <h2 class="section-title">How to Use</h2>
+        <div class="about-content">
+            <div class="about-image">
+                <img src="./image/picture1.png" alt="Profile Picture">
+            </div>
+            <div class="about-text">
+                <h3>Basic Guide</h3>
+                <p>Our application will provide different excersis according to your need and easeir selection to hit the right muscles and achive higher gains.</p>
+                <p>You will need no guidance after using this website So i request you to trust us and show God he chose the right person. Visiting us i the sign you want to become better. Let's get those Gains.</p>
+            </div>
+        </div>
+    </section>
+    <section id="exercise">
+        <h2 class="section-title">Select Exercise</h2>
+        <div class="exercise-grid">
+            <div class="exercise-item">
+                <img src="./image/Chest.png" alt="Project 1">
+                <div class="exercise-item-content">
+                    <h3>Chest Exercise</h3>
+                    <p>This consist of all exercise related to Chest Area.</p>
+                    <button><a href="page1.html" class="btn">View Project</a></button>
+                </div>
+            </div>
+            <div class="exercise-item">
+                <img src="./image/back.png" alt="Project 2">
+                <div class="exercise-item-content">
+                    <h3>Back Exercise</h3>
+                    <p>This consist of all exercise related to Back Area.</p>
+                    <button><a href="page2.html" class="btn">View Project</a></button>
+                </div>
+            </div>
+            <div class="exercise-item">
+                <img src="./image/sh.png" alt="Project 3">
+                <div class="exercise-item-content">
+                    <h3>Shoulder Exercises</h3>
+                    <p>This consist of all exercise related to Shoulder Area.</p>
+                    <button><a href="page3.html" class="btn">View Project</a></button>
+                </div>
+            </div>
+            <div class="exercise-item">
+                <img src="./image/leg.png" alt="Project 4">
+                <div class="exercise-item-content">
+                    <h3>Leg and Core Excersis</h3>
+                    <p>This consist of all exercise related to Leg and Glute Area.</p>
+                    <button><a href="page4.html" class="btn">View Project</a></button>
+                </div>
+            </div><div class="exercise-item">
+                <img src="./image/arm.png" alt="Project 5">
+                <div class="exercise-item-content">
+                    <h3>Arm Exercises</h3>
+                    <p>This consist of all exercise related to Bicep and Tricep Area.</p>
+                    <button><a href="page5.html" class="btn">View Project</a></button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="contact">
+        <h2 class="section-title">Feedback</h2>
+        <form class="contact-form">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message/Comment</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn">Send Feedback</button>
+        </form>
+    </section>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    navItems.forEach(navItem => navItem.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+    <script>
+     document.addEventListener('DOMContentLoaded', function() {
+        const navLinks = document.querySelectorAll('.nav-bar a');
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navMenu = document.querySelector('.nav-bar ul');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                navLinks.forEach(navLink => navLink.classList.remove('active'));
+                this.classList.add('active');
+                
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+
+                // Close mobile menu after clicking a link
+                if (window.innerWidth <= 768) {
+                    navMenu.classList.remove('show');
+                }
+            });
+        });
+
+        menuToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('show');
+        });
+
+        // Hide nav bar when scrolling down, show when scrolling up
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) {
+                document.querySelector('.nav-bar').style.transform = 'translateY(-100%)';
+            } else {
+                document.querySelector('.nav-bar').style.transform = 'translateY(0)';
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        }, false);
+    });
+</script>
+    <main>
+        <footer>
+            <p>&copy; 2025 Arnav Tiwari. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </footer>
+</body>
+</html> 
